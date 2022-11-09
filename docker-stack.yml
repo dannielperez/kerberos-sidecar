@@ -7,7 +7,7 @@ services:
       - TZ=Europe/Istanbul
       - SECRETS=/secrets
       - KEYTAB=client.keytab
-      - PRINCIPAL=client@HADOOP.COM
+      - PRINCIPAL=${USERNAME}@${USERDNSDOMAIN}
       - VOLUME=/kerberos-sidecar
       - KRB5_CONFIG=/kerberos-sidecar/krb5.conf
       - KRB5CCNAME=FILE:/kerberos-sidecar/krb5cc
