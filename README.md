@@ -1,3 +1,6 @@
+### Forked kerberos-sidecar
+- This fork is a modification of the original ahmetgurbuz1 version to match a specific use case. 
+
 ### What is sidecar container ?
 [kerberos-sidecar-container](https://www.openshift.com/blog/kerberos-sidecar-container)
 
@@ -37,3 +40,7 @@ volumes:
 Same strategy can be applied in kubernetes using kubernetes secrets. Kubernetes secrets can be updated during runtime. A pod who is mounting the secret to itself will get the updated secret without restart. But the secret type should be a file. A kubernetes secret can contain multiple files. One for krb5.conf and other one will be krb5cc (the ticket).
 
 A simple kerberos-auth pod in kubernetes can be implemented in a python container. The secret which is containing kerberos ticket cache and krb5.conf should be updated (with a scheduler before ticket expires) during runtime using [kubernetes](https://pypi.org/project/kubernetes/) library.
+
+### Modifications
+- Changed parameters to grab user from windows enviroment variables
+- Changed from kubernetes stack to container distro
