@@ -1,6 +1,7 @@
 ### Forked kerberos-sidecar
 - This fork is a modification of the original ahmetgurbuz1 version to match a specific use case. 
 
+
 ### What is sidecar container ?
 [kerberos-sidecar-container](https://www.openshift.com/blog/kerberos-sidecar-container)
 
@@ -10,6 +11,12 @@ Sidecar containers help to other containers to reach kerberized services without
 
 ### Creating example secret
 ``` docker secret create client.keytab [path_to_the_keytab]/client.keytab```
+
+
+### .Keytab file
+- You can crete a keytab file using JRE or JSDK
+- You can also create it using microsoft server using [ktpass utility](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ktpass)
+
 
 ### kerberos sidecar container
 ```
