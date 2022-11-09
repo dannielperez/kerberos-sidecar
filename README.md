@@ -14,8 +14,10 @@ Sidecar containers help to other containers to reach kerberized services without
 
 
 ### .Keytab file
-- You can crete a keytab file using JRE or JSDK
-- You can also create it using microsoft server using [ktpass utility](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ktpass)
+A keytab file can be created using many methods:
+- Using JRE or JSDK, using the [ktab utility](https://docs.oracle.com/javase/7/docs/technotes/tools/windows/ktab.html)
+- Using microsoft server using the [ktpass utility](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ktpass)
+- Inside a unix system, there is a [docker container with all steps](https://github.com/simplesteph/docker-kerberos-get-keytab)
 
 
 ### kerberos sidecar container
