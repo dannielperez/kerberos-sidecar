@@ -2,13 +2,15 @@ version: "3.7"
 
 services:
   kerberos-sidecar:
-    image: kerberos-sidecar
+    # image: kerberos-sidecar
     # hostname: kerberos-sidecar
     environment:
       - TZ=Europe/Istanbul
       - SECRETS=/secrets
       - KEYTAB=client.keytab
+      # - PRINCIPAL=${USERNAME}
       - PRINCIPAL=${USERNAME}@${USERDNSDOMAIN}
+      - PASSWORD=${PASSWORD}
       - VOLUME=/kerberos-sidecar
       - KRB5_CONFIG=/kerberos-sidecar/krb5.conf
       - KRB5CCNAME=FILE:/kerberos-sidecar/krb5cc
@@ -23,17 +25,19 @@ services:
     restart: on-failure
     volumes:
       - sidecar-volume:/kerberos-sidecar:rwx
-      - .secrets/client.keytab:/secrets/client.keytab
-    # secrets:
-    #   - source: client-keytab
-    #     target: /secrets/client.keytab
+      # - ./secrets/client.keytab:/secrets/client.keytab
+    secrets:
+      # - client-keytab
+      - source: client-keytab
+        target: /secrets/client.keytab
 
 volumes:
   sidecar-volume:
     external: false
     name: kerberos-sidecar
 
-# secrets:
-#   client-keytab:
-#     external: true
-#     name: client.keytab
+secrets:
+  client-keytab:
+    file: ./secrets/client.keytab
+    # external: true
+    # name: client.keytab
