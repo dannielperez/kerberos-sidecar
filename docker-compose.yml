@@ -5,12 +5,12 @@ services:
     # image: kerberos-sidecar
     # hostname: kerberos-sidecar
     environment:
-      - TZ=Europe/Istanbul
+      - TZ=America/Puerto_Rico
       - SECRETS=/secrets
       - KEYTAB=client.keytab
       # - PRINCIPAL=${USERNAME}
       - PRINCIPAL=${USERNAME}@${USERDNSDOMAIN}
-      - PASSWORD=${PASSWORD}
+      # - KEYTAB_SECURITY=AES256-SHA1
       - VOLUME=/kerberos-sidecar
       - KRB5_CONFIG=/kerberos-sidecar/krb5.conf
       - KRB5CCNAME=FILE:/kerberos-sidecar/krb5cc
@@ -38,6 +38,6 @@ volumes:
 
 secrets:
   client-keytab:
-    file: ./secrets/client.keytab
+    file: ./secrets/${USERNAME}.keytab
     # external: true
     # name: client.keytab
