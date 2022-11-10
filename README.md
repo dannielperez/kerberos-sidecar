@@ -19,7 +19,26 @@ A keytab file can be created using many methods:
 - Using microsoft server using the [ktpass utility](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ktpass)
 - Inside a unix system, there is a [docker container with all steps](https://github.com/simplesteph/docker-kerberos-get-keytab)
 
+The file name format should be: ${username}.keytab
+located inside a secrets path inside the main repo
 
+
+### keytab generation demo
+This demo is being run using powershell
+
+The docker being run expects you to mount the path where you would output the keytab 
+
+[Git repo with Instructions](https://github.com/simplesteph/docker-kerberos-get-keytab) 
+
+]#### Example: 
+'''
+docker run -it --rm -v C:\git\kerberos-sidecar\secrets:/output -e PRINCIPAL=$Env:username@$Env:userdnsdomain simplesteph/docker-kerberos-get-keytab
+'''
+
+#### Template:
+'''
+docker run -it --rm -v < output path >:/output -e PRINCIPAL=$Env:username@$Env:userdnsdomain simplesteph/docker-kerberos-get-keytab
+'''
 ### kerberos sidecar container
 ```
 docker-compose build
@@ -53,3 +72,4 @@ A simple kerberos-auth pod in kubernetes can be implemented in a python containe
 ### Modifications
 - Changed parameters to grab user from windows enviroment variables
 - Changed from kubernetes stack to container distro
+
