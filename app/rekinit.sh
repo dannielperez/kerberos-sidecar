@@ -9,38 +9,44 @@ if [ ! -f /etc/krb5.conf ]; then
     exit 1
 fi
 
-if [[ -z "${PRINCIPAL// }" ]]; then echo "PRINCIPAL hasn't been provided"; exit 1; fi;
-# prompt user for password
+# if [[ -z "${PRINCIPAL// }" ]]; then echo "PRINCIPAL hasn't been provided"; exit 1; fi;
+# # prompt user for password
 # IFS= read -s  -p "Enter $PRINCIPAL password:" PASSWORD
 # echo ""
-if [[ -z "${PASSWORD// }" ]]; then echo "PASSWORD hasn't been provided, exit"; exit 1; fi;
+# if [[ -z "${PASSWORD// }" ]]; then echo "PASSWORD hasn't been provided, exit"; exit 1; fi;
+
 KEYTAB_SECURITY=${KEYTAB_SECURITY:-"rc4-hmac"}
 
-# password verifications
-echo "========== Verifying password... =========="
-echo $PASSWORD | kinit -V $PRINCIPAL
-ret_code=$?
-if [ $ret_code != 0 ]; then
-  echo "Error : Wrong username/password combination"
-  exit $ret_code
-fi
+# # password verifications
+# echo "========== Verifying password... =========="
+# echo $PASSWORD | kinit -V $PRINCIPAL
+# ret_code=$?
+# if [ $ret_code != 0 ]; then
+#   echo "Error : Wrong username/password combination"
+#   exit $ret_code
+# fi
 
-# # generate keytab
-# echo "========== Generating Keytab... =========="
+# # # generate keytab
+# # echo "========== Generating Keytab... =========="
 # KEYTAB_FILE=$(echo $PRINCIPAL | cut -d@ -f1 | cut -d/ -f1 | tr '[:upper:]' '[:lower:]').keytab
-# ktutil < <(echo -e "addent -password -p $PRINCIPAL -k 1 -e $KEYTAB_SECURITY\n$PASSWORD\nwrite_kt $KEYTAB_FILE\nquit")
+# # ktutil < <(echo -e "addent -password -p $PRINCIPAL -k 1 -e $KEYTAB_SECURITY\n$PASSWORD\nwkt $KEYTAB_FILE\nquit")
+# # printf "%b" "addent -password -p $PRINCIPAL -k 1 -e $KEYTAB_SECURITY\n$PASSWORD\nwkt $KEYTAB_FILE\nquit" | ktutil
+# # printf "%b" "addent -password -p $PRINCIPAL -k 1 -e $KEYTAB_SECURITY\n$PASSWORD\nwrite_kt $KEYTAB_FILE" | ktutil
+# echo -e "add_entry -password -p $PRINCIPAL -k 1 -e $KEYTAB_SECURITY\n$PASSWORD\nwkt $KEYTAB_FILE" | ktutil
 
 while true; do
   echo "*** Trying to kinit at $(date). ***"
   # kinit -kt "$SECRETS/$KEYTAB" "$PRINCIPAL"
-  kinit -V -kt "$SECRETS/$KEYTAB" "$PRINCIPAL"
+  # kinit -V -kt "$SECRETS/$KEYTAB" "$PRINCIPAL"
+  kinit -V -kt $SECRETS/$KEYTAB $PRINCIPAL
+  # kinit -V -kt $KEYTAB_FILE $PRINCIPAL
 
   result=$?
-  if [ "$result" -eq 0]; then
-    echo "kinit is successfull. Sleeping for $REKINIT_PERIOD seconds."
+  if [ $result != 0 ]; then
+    echo "Error : The keytab that was generated does not appear to work"
+    exit $result
   else
-    echo "kinit is exited with error. result code: $result"
-    exit 1
+    echo "kinit is successfull. Sleeping for $REKINIT_PERIOD seconds."
   fi
 
   sleep "$REKINIT_PERIOD"
