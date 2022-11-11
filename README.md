@@ -1,3 +1,9 @@
+### Kerberos
+Kerberos is a network authentication protocol. It is designed to provide strong authentication for client/server applications by using secret-key cryptography. A free implementation of this protocol is available from the Massachusetts Institute of Technology. Kerberos is available in many commercial products as well. [MIT Kerberos](https://web.mit.edu/kerberos/)
+
+From <https://web.mit.edu/kerberos/#what_is> 
+
+
 ### Forked kerberos-sidecar
 - This fork is a modification of the original ahmetgurbuz1 version to match a specific use case. 
 
@@ -7,10 +13,6 @@
 
 To reach a kerberized service, a kerberos ticket and krb5.conf file is enough. 
 Sidecar containers help to other containers to reach kerberized services without calling kinit in each container.
-
-
-### Creating example secret
-``` docker secret create client.keytab [path_to_the_keytab]/client.keytab```
 
 
 ### .Keytab file
