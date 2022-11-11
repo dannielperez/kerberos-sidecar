@@ -32,7 +32,8 @@ The docker being run expects you to mount the path where you would output the ke
 
 [Git repo with Instructions](https://github.com/simplesteph/docker-kerberos-get-keytab) 
 
-]#### Example: 
+There are more parameters that can be added to command in instructions.
+#### Example: 
 '''
 docker run -it --rm -v C:\git\kerberos-sidecar\secrets:/output -e PRINCIPAL=$Env:username@$Env:userdnsdomain simplesteph/docker-kerberos-get-keytab
 '''
@@ -41,11 +42,13 @@ docker run -it --rm -v C:\git\kerberos-sidecar\secrets:/output -e PRINCIPAL=$Env
 '''
 docker run -it --rm -v < output path >:/output -e PRINCIPAL=$Env:username@$Env:userdnsdomain simplesteph/docker-kerberos-get-keytab
 '''
+
+
 ### kerberos sidecar container
 ```
-docker-compose build
-docker stack deploy -c docker-stack.yml kerberos-auth
+docker-compose up --build 
 ```
+Check the docker-compose file for enviroment variables (ex. KEYTAB_SECURITY)
 
 ### using sidecar volume in other containers using docker stack
 Other services can use the sidecar-volume. Sidecar volume will always be containing a valid kerberos ticket cache.
