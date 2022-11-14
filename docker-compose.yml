@@ -8,7 +8,6 @@ services:
       - TZ=America/Puerto_Rico
       - SECRETS=/secrets
       - KEYTAB=client.keytab
-      # - PRINCIPAL=${USERNAME}
       - PRINCIPAL=${USERNAME}@${USERDNSDOMAIN}
       # - KEYTAB_SECURITY=AES256-SHA1
       - VOLUME=/kerberos-sidecar

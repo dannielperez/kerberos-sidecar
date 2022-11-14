@@ -15,7 +15,7 @@ fi
 # echo ""
 # if [[ -z "${PASSWORD// }" ]]; then echo "PASSWORD hasn't been provided, exit"; exit 1; fi;
 
-KEYTAB_SECURITY=${KEYTAB_SECURITY:-"rc4-hmac"}
+KEYTAB_SECURITY=${KEYTAB_SECURITY:-"AES256-SHA1"}
 
 # # password verifications
 # echo "========== Verifying password... =========="

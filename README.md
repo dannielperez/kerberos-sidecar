@@ -26,23 +26,35 @@ located inside a secrets path inside the main repo
 
 
 ### keytab generation demo
-This demo is being run using powershell
-
 The docker being run expects you to mount the path where you would output the keytab 
 
 [Git repo with Instructions](https://github.com/simplesteph/docker-kerberos-get-keytab) 
 
 There are more parameters that can be added to command in instructions.
+
+OS: ```Windows```
+console: ```powershell```
+
 #### Example: 
 ```
-docker run -it --rm -v C:\git\kerberos-sidecar\secrets:/output -e PRINCIPAL=$Env:username@$Env:userdnsdomain simplesteph/docker-kerberos-get-keytab
+docker run -it --rm `
+-v C:\git\kerberos-sidecar\secrets:/output `
+-e PRINCIPAL=$Env:username@$Env:userdnsdomain `
+-e KEYTAB_SECURITY=AES256-SHA1 `
+simplesteph/docker-kerberos-get-keytab
 ```
 
+Please replace the ```< >``` blocks by the appropriate values
 #### Template:
 ```
-docker run -it --rm -v < output path >:/output -e PRINCIPAL=$Env:username@$Env:userdnsdomain simplesteph/docker-kerberos-get-keytab
+docker run -it --rm `
+-v <output path :/output `
+-e PRINCIPAL=$Env:username@$Env:userdnsdomain `
+-e KEYTAB_SECURITY=AES256-SHA1 `
+simplesteph/docker-kerberos-get-keytab
 ```
 
+```KEYTAB_SECURITY```: Optional security level for your keytab (default is rc4-hmac)
 
 ### kerberos sidecar container
 ```
