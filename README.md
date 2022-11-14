@@ -34,14 +34,14 @@ The docker being run expects you to mount the path where you would output the ke
 
 There are more parameters that can be added to command in instructions.
 #### Example: 
-'''
+```
 docker run -it --rm -v C:\git\kerberos-sidecar\secrets:/output -e PRINCIPAL=$Env:username@$Env:userdnsdomain simplesteph/docker-kerberos-get-keytab
-'''
+```
 
 #### Template:
-'''
+```
 docker run -it --rm -v < output path >:/output -e PRINCIPAL=$Env:username@$Env:userdnsdomain simplesteph/docker-kerberos-get-keytab
-'''
+```
 
 
 ### kerberos sidecar container
