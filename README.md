@@ -16,6 +16,8 @@ Sidecar containers help to other containers to reach kerberized services without
 
 
 ### .Keytab file
+A [keytab](https://web.mit.edu/kerberos/krb5-latest/doc/basic/keytab_def.html) (short for “key table”) stores long-term keys for one or more principals. Keytabs are normally represented by files in a standard format, although in rare cases they can be represented in other ways. Keytabs are used most often to allow server applications to accept authentications from clients, but can also be used to obtain initial credentials for client applications.
+
 A keytab file can be created using many methods:
 - Using JRE or JSDK, using the [ktab utility](https://docs.oracle.com/javase/7/docs/technotes/tools/windows/ktab.html)
 - Using microsoft server using the [ktpass utility](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ktpass)
@@ -33,6 +35,7 @@ The docker being run expects you to mount the path where you would output the ke
 There are more parameters that can be added to command in instructions.
 
 OS: ```Windows```
+
 console: ```powershell```
 
 #### Example: 
