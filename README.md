@@ -76,5 +76,5 @@ A simple kerberos-auth pod in kubernetes can be implemented in a python containe
 
 ### Modifications
 - Changed parameters to grab user from windows enviroment variables
-- Changed from kubernetes stack to container distro
+- Changed from docker swarm to docker compose, based on [kerberos-sidecar from ahmetgurbuz1](https://github.com/ahmetgurbuz1/kerberos-sidecar)
 
