@@ -5,7 +5,7 @@ From <https://web.mit.edu/kerberos/#what_is>
 
 
 ### Forked kerberos-sidecar
-- This fork is a modification of the original ahmetgurbuz1 version to match a specific use case. 
+- This fork is a modification of the original ahmetgurbuz1 version.  It's a docker compose version instead of swarm.
 
 
 ### What is sidecar container ?
