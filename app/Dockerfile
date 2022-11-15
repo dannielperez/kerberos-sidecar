@@ -1,6 +1,8 @@
-FROM python:3.9.9-slim-bullseye
+FROM alpine:latest
 
-RUN apt-get update && apt-get install krb5-user libkrb5-dev -y
+RUN apk update \
+    && apk add bash krb5 \
+    && rm -rf /var/cache/apk/*
 
 WORKDIR /
 COPY . .
