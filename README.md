@@ -64,7 +64,7 @@ simplesteph/docker-kerberos-get-keytab
 ```
 docker-compose up --build 
 ```
-Check the docker-compose file for enviroment variables (ex. KEYTAB_SECURITY)
+Check the docker-compose file for environment variables (ex. KEYTAB_SECURITY)
 
 
 ### using sidecar volume in other containers using docker compose
@@ -88,7 +88,7 @@ volumes:
 ```
 
 ### Modifications
-- Changed docker-compose enviroment variables to grab user from Windows enviroment variables
+- Changed docker-compose environment variables to grab user from Windows environment variables
 - Changed from docker swarm to docker compose, based on [kerberos-sidecar from ahmetgurbuz1](https://github.com/ahmetgurbuz1/kerberos-sidecar)
 - Added example in docker compose on how to generate keytab file inside project repo
 
