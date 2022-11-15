@@ -59,18 +59,21 @@ simplesteph/docker-kerberos-get-keytab
 
 ```KEYTAB_SECURITY```: Optional security level for your keytab (default is rc4-hmac)
 
+
 ### kerberos sidecar container
 ```
 docker-compose up --build 
 ```
 Check the docker-compose file for enviroment variables (ex. KEYTAB_SECURITY)
 
-### using sidecar volume in other containers using docker stack
+
+### using sidecar volume in other containers using docker compose
 Other services can use the sidecar-volume. Sidecar volume will always be containing a valid kerberos ticket cache.
 Other services can just mount sidecar-volume and use the valid kerberos ticket by setting KRB5CCNAME environment variable.
 See for more details: [KRB5CCNAME](https://web.mit.edu/kerberos/krb5-1.12/doc/basic/ccache_def.html)
 
-#### other-docker-stack.yml
+
+#### other-docker-compose.yml
 ```
 .
 .
@@ -88,4 +91,10 @@ volumes:
 - Changed docker-compose enviroment variables to grab user from Windows enviroment variables
 - Changed from docker swarm to docker compose, based on [kerberos-sidecar from ahmetgurbuz1](https://github.com/ahmetgurbuz1/kerberos-sidecar)
 - Added example in docker compose on how to generate keytab file inside project repo
+
+
+### Sources
+This proyect is based on the code from:
+- [kerberos-sidecar by ahmetgurbuz1](https://github.com/ahmetgurbuz1/kerberos-sidecar)
+- [docker-kerberos-get-keytab by simplesteph](https://github.com/simplesteph/docker-kerberos-get-keytab) 
 
