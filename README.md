@@ -81,11 +81,29 @@ services:
   [service_name]:
     volumes:
       - sidecar-volume:/kerberos-sidecar
+    enviroment:
+      - KRB5CCNAME=/kerberos-sidecar/krb5cc
 volumes:
   sidecar-volume:
     external:true
     name: kerberos-sidecar
 ```
+
+
+#### other-Dockerfile
+```
+.
+.
+# pipe ARG
+ARG KRB5CCNAME
+
+# copy krb5.conf
+COPY krb5.conf /etc/krb5.conf
+
+# Install kerberos client
+RUN apt-get update && apt-get install krb5-user -y
+```
+
 
 ### Modifications
 - Changed docker-compose environment variables to grab user from Windows environment variables
