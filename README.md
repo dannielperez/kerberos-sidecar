@@ -41,7 +41,7 @@ console: ```powershell```
 #### Example: 
 ```
 docker run -it --rm `
--v C:\git\kerberos-sidecar\secrets:/output `
+-v $pwd\secrets:/output `
 -e PRINCIPAL=$Env:username@$Env:userdnsdomain `
 -e KEYTAB_SECURITY=AES256-SHA1 `
 simplesteph/docker-kerberos-get-keytab
